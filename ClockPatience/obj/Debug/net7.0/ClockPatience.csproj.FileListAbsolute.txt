@@ -1,0 +1,15 @@
+/Users/matteorapa/Documents/GitHub/clockpatienceexigy/ClockPatience/bin/Debug/net7.0/ClockPatience
+/Users/matteorapa/Documents/GitHub/clockpatienceexigy/ClockPatience/bin/Debug/net7.0/ClockPatience.deps.json
+/Users/matteorapa/Documents/GitHub/clockpatienceexigy/ClockPatience/bin/Debug/net7.0/ClockPatience.runtimeconfig.json
+/Users/matteorapa/Documents/GitHub/clockpatienceexigy/ClockPatience/bin/Debug/net7.0/ClockPatience.dll
+/Users/matteorapa/Documents/GitHub/clockpatienceexigy/ClockPatience/bin/Debug/net7.0/ClockPatience.pdb
+/Users/matteorapa/Documents/GitHub/clockpatienceexigy/ClockPatience/obj/Debug/net7.0/ClockPatience.csproj.AssemblyReference.cache
+/Users/matteorapa/Documents/GitHub/clockpatienceexigy/ClockPatience/obj/Debug/net7.0/ClockPatience.GeneratedMSBuildEditorConfig.editorconfig
+/Users/matteorapa/Documents/GitHub/clockpatienceexigy/ClockPatience/obj/Debug/net7.0/ClockPatience.AssemblyInfoInputs.cache
+/Users/matteorapa/Documents/GitHub/clockpatienceexigy/ClockPatience/obj/Debug/net7.0/ClockPatience.AssemblyInfo.cs
+/Users/matteorapa/Documents/GitHub/clockpatienceexigy/ClockPatience/obj/Debug/net7.0/ClockPatience.csproj.CoreCompileInputs.cache
+/Users/matteorapa/Documents/GitHub/clockpatienceexigy/ClockPatience/obj/Debug/net7.0/ClockPatience.dll
+/Users/matteorapa/Documents/GitHub/clockpatienceexigy/ClockPatience/obj/Debug/net7.0/refint/ClockPatience.dll
+/Users/matteorapa/Documents/GitHub/clockpatienceexigy/ClockPatience/obj/Debug/net7.0/ClockPatience.pdb
+/Users/matteorapa/Documents/GitHub/clockpatienceexigy/ClockPatience/obj/Debug/net7.0/ClockPatience.genruntimeconfig.cache
+/Users/matteorapa/Documents/GitHub/clockpatienceexigy/ClockPatience/obj/Debug/net7.0/ref/ClockPatience.dll
