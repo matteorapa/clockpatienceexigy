@@ -3,7 +3,7 @@ namespace ClockPatience.Common.Enums;
 public enum Rank
 {
     Ace,
-    One,
+    Two,
     Three,
     Four,
     Five,
