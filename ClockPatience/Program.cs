@@ -1,4 +1,4 @@
-﻿using System.Runtime.InteropServices;
+﻿using ClockPatience;
 using ClockPatience.Common.Enums;
 using ClockPatience.Common.Objects;
 
@@ -41,11 +41,11 @@ if (fileContentsLines.Count % 4 != 1)
 }
 
 List<Deck> decks = new List<Deck>();
-
+const int fullDeckCardsLength = 52;
 for (var index = 0;  index < fileContentsLines.Count; index++)
 {
     //check if there enough lines, ie. 5 lines to add a new deck
-    if (fileContentsLines.Count - index >= 5)
+    if (decks.Count == 0 || decks.Last().Cards.Count == fullDeckCardsLength)
     {
         var deck = new Deck();
         decks.Add(deck);
@@ -67,23 +67,79 @@ for (var index = 0;  index < fileContentsLines.Count; index++)
     }
 }
 
+var rankCount = Enum.GetValues(typeof(Rank)).Length;
+
+// Play game for every deck
+foreach(var deck in decks)
+{
+    // The deck is listed from bottom to top, reverse the cards in the decks.
+    deck.Cards.Reverse();
+    var piles = new List<Pile>();
+
+    // create the piles, each pile references a rank of cards
+    foreach (Rank rank in Enum.GetValues(typeof(Rank)))
+    {
+        var newPile = new Pile(rank);
+        piles.Add(newPile);
+    }
+
+    // for each deck place in piles using the correct order
+    var currentPileAddIndex = 0;
+    foreach (var deckCard in deck.Cards)
+    {
+        piles[currentPileAddIndex].Cards.Push(deckCard);
+        
+        // Check to reset the index once every pile is given a card
+        if (currentPileAddIndex == (rankCount - 1))
+        {
+            // Reset index
+            currentPileAddIndex = 0;
+        }
+        else
+        {
+            currentPileAddIndex++;
+        }
+    }
 
 
-var piles = new List<Pile>();
-// for each deck place in piles using the correct order
-
-
-//play game,
-// start at king pile
-
-var currentPileRankReference = Rank.King;
-var currentPile = piles.Find(p => p.PileReference == currentPileRankReference);
+    var cardsExposedCount = 0;
+    Card lastCardExposed = new Card("AD");
     
+    // start at king pile
+    var currentPileRankReferenceInt = (int)Rank.King;
 
-    
-    // expose top card (current card),
-    // place exposed card at bottom of pile with the same value,
-    // set top card of pile to current pile
-    // repeat until no cards left to expose
-    // return one line per deck, showing number of exposed card, and last exposed card
+    while (cardsExposedCount < deck.Cards.Count)
+    {
+        // Check if the top card of the pile is already exposed, then end the game for deck
+        if (piles[currentPileRankReferenceInt].Cards.Count == 0 || piles[currentPileRankReferenceInt].Cards.Peek().IsExposed)
+        {
+            var cardsExposedCountText = cardsExposedCount.ToString();
+            // When single digit, add leading zero character
+            if (cardsExposedCount < 10)
+            {
+                cardsExposedCountText = "0" + cardsExposedCountText;
+            }
+            Console.WriteLine(cardsExposedCountText +" "+ lastCardExposed);
+            break;
+        }
+        else
+        {
+            // set top card of pile to current pile
+            var currentCard = piles[currentPileRankReferenceInt].Cards.Pop();
+            
+            // expose top card (current card),
+            currentCard.IsExposed = true;
+            lastCardExposed = currentCard;
+            cardsExposedCount++;
 
+            
+            // place exposed card at bottom of pile with the same value,
+            var destinationPileRankReferenceInt = (int)currentCard.Rank;
+            piles[destinationPileRankReferenceInt].Cards = UtilityMethods
+                .PushToBottom(piles[destinationPileRankReferenceInt].Cards, currentCard);
+            
+            // Set the working pile to the rank of the exposed card
+            currentPileRankReferenceInt = destinationPileRankReferenceInt;
+        }
+    }
+}
